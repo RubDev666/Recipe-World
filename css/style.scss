@@ -57,6 +57,11 @@ $light: #fff;
     &::-webkit-scrollbar-thumb {
         background: $secondary;
     }
+
+    &::selection {
+        background: $secondary;
+        color: $primary;
+    }
 }
 
 body {
