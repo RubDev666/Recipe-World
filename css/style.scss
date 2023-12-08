@@ -1,0 +1,443 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Peralta&display=swap');
+
+$logo-font: 'Peralta', serif;
+$font-family-base: "Raleway", sans-serif;
+$primary: #000;
+$secondary: #eacf4f;
+$light: #fff;
+
+/*------ importaciones bootstrap indispensables ------ 
+@import "../node_modules/bootstrap/scss/functions";
+
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+/*-------- estas 3 lineas reemplazan lo anterior
+@import "../node_modules/bootstrap/scss/bootstrap-grid.scss";
+@import "../node_modules/bootstrap/scss/bootstrap-reboot.scss";
+@import "../node_modules/bootstrap/scss/bootstrap-utilities.scss"; 
+
+/*---------- importaciones bootstrap usadas para el proyecto -------- 
+/*--------- navbar ---------- 
+@import "../node_modules/bootstrap/scss/navbar";
+@import "../node_modules/bootstrap/scss/helpers/position";
+@import "../node_modules/bootstrap/scss/transitions";*/
+
+/*--------- carousel ----- 
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/carousel";
+
+/*-------- toast ---- 
+@import "../node_modules/bootstrap/scss/toasts";
+
+/*------- cards ------- 
+@import "../node_modules/bootstrap/scss/card";
+
+/*-------- modal ------ 
+@import "../node_modules/bootstrap/scss/modal"; */
+
+/*--- es importante mantener el codigo global de bootstrap para para probar en dado caso que no funcione las importaciones, ya que depende el orden la importacion va a afectar el codigo final compilado. Algo util es que voy revisando el codigo global y en devtools veo las hojas que se requieren para luego seleccionar las importaciones */
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+/*---------------------------------------------------------- GLOBAL STYLES ----------------------------- */
+* {
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $primary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $secondary;
+    }
+}
+
+body {
+    background-image: linear-gradient(transparent 80%, #000), url(../images/background.jpg);
+    min-height: 90vh;
+
+    /*---- un buen efecto para dejar la imagen de fondo fija, pero se ralentiza todo el sitio... al hacer scroll*/
+    /*background-attachment: fixed;*/
+}
+
+@mixin transition-all {
+    transition: all .2s ease-in-out;
+}
+
+@mixin color-hover($--color, $--color-hover) {
+    @include transition-all;
+
+    color: $--color;
+
+    &:hover {
+        color: $--color-hover;
+    }
+}
+
+@mixin btn-action($--border-rgb, $--bg-color, $--bg-color-hover, $--text-color, $--text-color-hover) {
+    border: solid 2px rgba($--border-rgb, 0.5);
+    background: $--bg-color;
+    outline: none;
+    
+    @include color-hover($--text-color, $--text-color-hover);
+
+    &:hover {
+        border: solid 2px rgba($--border-rgb, 1);
+        background: $--bg-color-hover;
+    }
+}
+
+/*------------- BUTTONS WITH ICONS --------- */
+@mixin btn-icon($color) {
+    border: none;
+    outline: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
+    .icons {
+        color: $color;
+        font-size: 22px;
+        @include transition-all;
+    }
+    
+    .rotate {
+        transform: rotate(180deg);
+    }
+}
+
+/*-------------------- NAVBAR -------------- */
+nav a {
+    text-decoration: none;
+}
+
+.logo {
+    font-family: $logo-font;
+}
+
+.link {
+    border-bottom: solid 2px $primary;
+    font-size: 20px;
+    @include color-hover($light, $secondary);
+
+    &:hover {
+        border-bottom: solid 2px $secondary;
+    }
+}
+
+.btnNav {
+    @include btn-icon($secondary);    
+}
+
+/*---------------- TOAST, RECIPE CARDS, MODAL --------------- */
+.modal-content,
+#toast {
+    border-radius: 0;
+}
+
+.btnToast {
+    @include btn-icon($primary);
+}
+
+.card-border {
+    border: solid 2px transparent;
+
+    @include transition-all;
+
+    &:hover {
+        border: solid 2px $secondary;
+    }
+}
+
+.btn-main {
+    @include btn-action(rgb(255, 255, 255), transparent, $light, $light, $primary);
+}
+
+.btn-close-modal {
+    @include btn-action(rgb(234, 208, 77) , transparent, $secondary, $secondary, $primary)
+}
+
+.btn-red {
+    @include btn-action(rgb(216, 34, 34), transparent, rgb(216, 34, 34), rgb(216, 34, 34), $primary)
+}
+
+.recipe-container {
+    max-width: 300px;
+}
+
+.imgRecipe {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.btn-back-top {
+    outline: none;
+    border: none;
+    background-color: $secondary;
+    color: $primary;
+    padding: 5px 10px;
+    font-size: 35px;
+    position: fixed;
+    top: 80vh;
+    right: -100px;
+    z-index: 100;
+    opacity: 0;
+
+    @include transition-all();
+}
+
+.btn-back-top.show {
+    opacity: 1;
+    right: 20px;
+}
+
+/*------------------------------- FOOTER ---------------- */
+footer {
+    i {
+        font-size: 40px;
+        cursor: pointer;
+        @include color-hover($light, $secondary);
+    }
+
+    p a {
+        @include color-hover($light, $secondary);
+    }
+
+    .footer-text {
+        max-width: 400px;
+    }
+}
+
+/*-------------------------------------------------------------------------------- INDEX ----------------------------- */
+.fondo {
+    background: url(../images/home-bg.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-top: -50px;
+}
+
+.carousel { 
+    box-sizing: border-box;
+    margin-top: 58px;
+    height: 75vh;
+
+    .carousel-item {
+        height: 75vh;
+        padding: 0 30px;
+
+        .row {
+            .img-container {
+                height: 200px;
+                margin-top: 7%;
+            }
+    
+            .carousel-caption {
+                margin-top: 30px;
+                position: initial;
+
+                h5 {
+                    font-size: 25px;
+                }
+    
+                p {
+                    max-width: 400px;
+                    margin: 30px auto 0;
+                }
+
+                a {
+                    text-decoration: none;
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+
+    .carousel-indicators [data-bs-target] {
+        @include transition-all;
+    
+        &.active {
+            background-color: $secondary;
+        }
+    }    
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        opacity: 1;
+
+        .fa {
+            font-size: 40px;
+            @include color-hover(rgba(255, 255, 255, .5), $secondary)
+        }
+
+        &:hover .fa {
+            color: $secondary;
+        }
+
+        &:focus .fa {
+            color: $secondary;
+        }
+    }
+}
+
+/*------------------------------------------------------------- MEALS, DRINKS, FAVORITE, AND ABOUT PAGES ------------------------------ */
+main {
+    margin-top: 55px;
+    
+    select {
+        background: transparent;
+        padding: 10px 15px;
+        width: 100%;
+        border: none;
+        outline: none;
+    }
+}
+
+/*----------------------------------------------------------------------- RESPONSIVE ---------------------- */
+@media screen and (min-width: 768px) {
+    nav .logo {
+        font-size: 30px;
+    }
+
+    .carousel {
+        margin-top: 77px;
+        height: 80vh;
+    
+        .carousel-item {
+            height: 80vh;
+
+            .row {
+                .img-container {
+                    margin-top: 2%;
+                    height: 270px;
+                }
+        
+                .carousel-caption {
+                    margin-top: 20px;
+    
+                    p {
+                        margin: 10px auto 0;
+                        font-size: 20px;
+                        max-width: 600px;
+                    }
+                }
+            }
+        }
+    }
+
+    main {
+        margin-top: 77px;
+
+        select {
+            font-size: 20px;
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .modal-dialog {
+        max-width: 1000px;
+
+        .modal-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            overflow-y: hidden;
+            min-height: 450px;
+
+            .img-modal-container {
+                max-width: 300px;
+
+                .imgRecipe {
+                    min-width: 300px;
+                }
+            }
+
+            .textContainer {
+                max-height: 450px;
+                overflow-y: auto;
+            }
+        }
+    }
+
+    .btn-back-top.show {
+        right: 40px;
+    }
+    
+    footer .row {
+        max-width: 1000px;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .carousel {
+        margin-top: 77px;
+        height: 85vh;
+    
+        .carousel-item {
+            .row {
+                height: 85vh;
+
+                .img-container {
+                    margin-top: 0;
+                }
+
+                .img-food {
+                    height: 200px;
+                }
+    
+                .carousel-caption {
+                    max-width: 600px;
+    
+                    h5 {
+                        font-size: 35px;
+                    }
+    
+                    p {
+                        margin: 10px auto 0;
+                        font-size: 20px;
+                        max-width: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .carousel .carousel-item .row {
+        .img-container {
+            height: 320px;
+            margin-top: 0;
+        }
+
+        .img-food {
+            height: 270px;
+        }
+
+        .carousel-caption {
+            max-width: 600px;
+
+            h5 {
+                font-size: 35px;
+            }
+
+            p {
+                margin: 10px auto 0;
+                font-size: 20px;
+                max-width: auto;
+            }
+        }
+    }
+}
