@@ -246,7 +246,8 @@ function eliminarFavorito(id) {
 
     localStorage.setItem('favoritos', JSON.stringify(nuevosFavoritos));
 
-    if(location.pathname === '/favorites.html') {
+    //si estamos en desarrollo es '/favorites.html', si es para produccion es '/favorites'
+    if(location.pathname === '/favorites') {
         mostrarRecetas(nuevosFavoritos.length ? nuevosFavoritos : 'no recipes', undefined, undefined);
     }
 }
