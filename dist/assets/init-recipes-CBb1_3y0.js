@@ -1,1 +1,0 @@
-import{a as r,b as l,u as n,d as c}from"./api-actions-DQ8hIB07.js";function u(){const e=window.location.pathname.includes("meals"),t=document.querySelector("#categorias");r(e?n.categories:c.categories,t),t.addEventListener("change",o);function o(s){const a=s.target,i=(e?n.recipes:c.recipes)+a.value;l(a.value,i,e?"meal":"drink")}}document.addEventListener("DOMContentLoaded",u);
