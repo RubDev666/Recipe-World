@@ -1,0 +1,1 @@
+import"./ui-script-Do196bDy.js";import{g as t,s as n,c as s,n as a}from"./api-actions-DQ8hIB07.js";function i(){const e=t();if(e.length)n(e,void 0,void 0);else{const o=document.querySelector("#resultado");s(o),o.appendChild(a("You don't have favorite recipes yet"))}}document.addEventListener("DOMContentLoaded",i);
