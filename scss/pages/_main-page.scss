@@ -1,0 +1,150 @@
+@use '../globals/custom' as *;
+@use '../globals/mixins' as mixin;
+
+.fondo {
+    background: url(../images/home-bg.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-top: -50px;
+}
+
+.carousel {    
+    box-sizing: border-box;
+    margin-top: 58px;
+    height: 80vh;
+
+    .carousel-item {
+        padding: 0 40px;
+        margin-top: 10%;
+
+        .row {
+            .img-container {
+                height: 200px;
+                display: flex;
+            }
+
+            .img-food {
+                img {
+                    max-height: 200px;
+                    margin: auto
+                }
+            }
+    
+            .carousel-caption {
+                margin-top: 30px;
+                position: initial;
+
+                h5 {
+                    font-size: 25px;
+                }
+    
+                p {
+                    max-width: 400px;
+                    margin: 30px auto 0;
+                }
+
+                a {
+                    text-decoration: none;
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+
+    .carousel-indicators [data-bs-target] {
+        @include mixin.transition-all;
+        /*background-color: red;*/
+    
+        &.active {
+            background-color: $secondary;
+        }
+    }    
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        .fa {
+            font-size: 40px;
+            @include mixin.color-hover(rgba(255, 255, 255, .5), $secondary)
+        }
+
+        &:hover .fa {
+            color: $secondary;
+        }
+
+        &:focus .fa {
+            color: $secondary;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .carousel .carousel-item {
+        margin-top: 2%;
+
+        .row {
+            .img-container {
+                height: 270px;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    $nav-height: 77px;
+    $carousel-height: calc(100vh - $nav-height);
+
+    .carousel {
+        margin-top: $nav-height;
+        height: $carousel-height;
+    
+        .carousel-item {
+            .row {
+                .carousel-caption {
+                    margin-top: 20px;
+    
+                    p {
+                        margin: 10px auto 0;
+                        font-size: 20px;
+                        max-width: 600px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .carousel {    
+        .carousel-item {
+            margin-top: 8%;
+
+            .row {    
+                .carousel-caption {
+                    max-width: 600px;
+    
+                    h5 {
+                        font-size: 35px;
+                    }
+    
+                    p {
+                        max-width: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xxl) {
+    .carousel .carousel-item .row {
+        .img-container {
+            height: 320px;
+        }
+
+        .img-food {
+            img {
+                max-height: 250px;
+            }
+        }
+    }
+}

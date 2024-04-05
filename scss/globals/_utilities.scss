@@ -1,0 +1,75 @@
+@use './mixins' as mixin;
+@use './custom' as *;
+
+/*---------------- TOAST, RECIPE CARDS, MODAL --------------- */
+.modal-content,
+#toast {
+    border-radius: 0;
+}
+
+.btnToast {
+    @include mixin.btn-icon($primary);
+}
+
+.card-border {
+    border: solid 2px transparent;
+
+    @include mixin.transition-all;
+
+    &:hover {
+        border: solid 2px $secondary;
+    }
+}
+
+.btn-main {
+    @include mixin.btn-action($light, transparent, $primary);
+}
+
+.btn-close-modal {
+    @include mixin.btn-action($secondary, transparent, $primary)
+}
+
+.btn-red {
+    @include mixin.btn-action(rgb(216, 34, 34), transparent, $primary)
+}
+
+.recipe-container {
+    max-width: 300px;
+}
+
+.imgRecipe {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.btnNav {
+    @include mixin.btn-icon($secondary);    
+}
+
+.btn-back-top {
+    outline: none;
+    border: none;
+    background-color: $secondary;
+    color: $primary;
+    padding: 5px 10px;
+    font-size: 35px;
+    position: fixed;
+    top: 80vh;
+    right: -100px;
+    z-index: 100;
+    opacity: 0;
+
+    @include mixin.transition-all();
+}
+
+.btn-back-top.show {
+    opacity: 1;
+    right: 20px;
+}
+
+@include media-breakpoint-up(lg) {
+    .btn-back-top.show {
+        right: 40px;
+    }
+}

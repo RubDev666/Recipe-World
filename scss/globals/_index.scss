@@ -1,0 +1,33 @@
+@forward 'utilities';
+
+@use './custom' as *;
+
+/*------------ global styles ----- */
+
+* {
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $primary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $secondary;
+    }
+
+    &::selection {
+        background: $secondary;
+        color: $primary;
+    }
+}
+
+body {
+    background-image: linear-gradient(transparent 80%, #000), url(../images/background.jpg);
+    /*---- un buen efecto para dejar la imagen de fondo fija, pero se ralentiza todo el sitio... al hacer scroll*/
+    /*background-attachment: fixed;*/
+
+    /*para que el gradiente ocupe toda la pantalla completa, los 77px es la altura completa del navbar en tamaño de escritorio*/
+    min-height: calc(100vh - 77px);
+}

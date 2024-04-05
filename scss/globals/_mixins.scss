@@ -1,0 +1,49 @@
+@use 'sass:color';
+
+@mixin transition-all {
+    transition: all .2s ease-in-out;
+}
+
+@mixin color-hover($color, $color-hover) {
+    @include transition-all;
+
+    color: $color;
+
+    &:hover {
+        color: $color-hover;
+    }
+}
+
+@mixin btn-action($main-color, $bg-color, $text-color-hover) {
+    border: solid 2px color.scale($main-color, $lightness: -50%);
+    background: $bg-color;
+    outline: none;
+    
+    @include color-hover($main-color, $text-color-hover);
+
+    &:hover {
+        border: solid 2px $main-color;
+        background: $main-color;
+    }
+}
+
+@mixin btn-icon($color) {
+    border: none;
+    outline: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
+    .icons {
+        color: $color;
+        font-size: 22px;
+        @include transition-all;
+    }
+    
+    .rotate {
+        transform: rotate(180deg);
+    }
+}
+

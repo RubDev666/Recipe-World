@@ -1,0 +1,33 @@
+@use '../globals/mixins' as mixin;
+@use '../globals/custom' as *;
+
+nav {
+    a {
+        text-decoration: none;
+    }
+
+    .logo {
+        font-family: $logo-font;
+    }
+    
+    .link {
+        border-bottom: solid 2px transparent;
+        font-size: 20px;
+    
+        @include mixin.color-hover($light, $secondary);
+    
+        &:hover {
+            border-bottom: solid 2px $secondary;
+        }
+    }
+
+    .btnNav {
+        @include mixin.btn-icon($secondary);    
+    }
+}
+ 
+@include media-breakpoint-up(md) {
+    nav .logo {
+        font-size: 30px;
+    }
+}

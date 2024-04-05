@@ -1,0 +1,26 @@
+@forward 'main-page';
+
+@use '../globals/custom' as *;
+
+/*------------------------------------ MEALS, DRINKS, FAVORITE, AND ABOUT PAGES ------------------------------ */
+main {
+    margin-top: 55px;
+    
+    select {
+        background: transparent;
+        padding: 10px 15px;
+        width: 100%;
+        border: none;
+        outline: none;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    main {
+        margin-top: 77px;
+
+        select {
+            font-size: 20px;
+        }
+    }
+}

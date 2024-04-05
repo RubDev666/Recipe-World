@@ -1,0 +1,25 @@
+@use '../globals/custom' as *;
+@use '../globals/mixins' as mixin;
+
+footer {
+    i {
+        font-size: 40px;
+        cursor: pointer;
+        @include mixin.color-hover($light, $secondary);
+    }
+
+    p a {
+        @include mixin.color-hover($light, $secondary);
+    }
+
+    .footer-text {
+        max-width: 400px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    footer .row {
+        max-width: 1000px;
+        margin: auto;
+    }
+}
